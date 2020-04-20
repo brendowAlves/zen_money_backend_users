@@ -5,8 +5,10 @@ import { LoginController } from './controllers/LoginController';
 export default class ZenMoneyServer extends Server {
     constructor(controllers: InstanceType<any>[]){
         super(true);
+
         this.app.use(bodyParser.json());
         this.app.use(bodyParser.urlencoded({extended: true}));
+
         super.addControllers(controllers);
     }
 
