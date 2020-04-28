@@ -1,5 +1,5 @@
 
-import ZenMoneyServer from './server';
+import ZenMoneyServer from './Server';
 import { LoginController } from './controllers/LoginController';
 
 
