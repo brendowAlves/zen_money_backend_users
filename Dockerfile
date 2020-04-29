@@ -4,5 +4,6 @@ WORKDIR /app
 
 COPY . .
 
+RUM npm install
 
 CMD ["npm" , "start"]
