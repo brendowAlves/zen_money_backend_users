@@ -4,6 +4,13 @@ import { ResponseLogin, RequestLogin } from 'src/model/types/login';
 
 @Controller('api/Login')
 export class LoginController {
+
+    @Get()
+    private teste (req :Request, res: Response)
+    {
+        res.status(200).send("Qualquer coisa");
+    }
+
     @Post()
     private getHello(req: Request, res: Response){
         const auth = req.body as RequestLogin;
