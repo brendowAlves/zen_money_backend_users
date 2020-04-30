@@ -15,7 +15,7 @@ export class LoginController {
     private getHello(req: Request, res: Response){
         const auth = req.body as RequestLogin;
 
-        if(auth.password === "tomate"){
+        if(auth.password === "senha"){
             res.status(403).json({message: "Wrong password"});
             return;
         }
