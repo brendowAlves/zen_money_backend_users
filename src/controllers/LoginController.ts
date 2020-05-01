@@ -5,7 +5,7 @@ import { ResponseLogin, RequestLogin } from 'src/model/types/login';
 @Controller('api/Login')
 export class LoginController {
 
-    @Get()
+    @Get("")
     private teste (req :Request, res: Response)
     {
         res.status(200).send("Qualquer coisa");
