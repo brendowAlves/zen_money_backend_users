@@ -14,7 +14,8 @@ export default class ZenMoneyServer extends Server {
 
     public start(port: number): void{
         this.app.get('*', (req,res) => {
-            res.send('The server is online');
+            const {url} = req;
+            res.send(`The server is online \n ${url}`);
         });
 
         this.app.listen(port, () => {
