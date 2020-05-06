@@ -13,9 +13,12 @@
   "dependencies": {
     "@overnightjs/core": "^1.6.15",
     "body-parser": "^1.19.0",
-    "express": "^4.17.1"
+    "dotenv": "^8.2.0",
+    "express": "^4.17.1",
+    "jsonwebtoken": "^8.5.1"
   },
   "devDependencies": {
+    "@types/jsonwebtoken": "^8.3.9",
     "@types/express": "^4.17.5",
     "@types/node": "^13.11.1",
     "nodemon": "^2.0.3",
