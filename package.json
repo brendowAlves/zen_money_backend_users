@@ -5,7 +5,8 @@
   "main": "build/start.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "nodemon --config \"./nodemon.json\"/"
+    "start": "nodemon --config \"./nodemon.json\"/",
+    "build": "tsc"
   },
   "author": "",
   "license": "ISC",

@@ -1,11 +1,18 @@
-FROM node:12.16.2
+FROM node:alpine as build
 
 WORKDIR /app
 
 COPY . .
 
 RUN npm install
+RUN npm run build
+
+FROM node:alpine
+WORKDIR /app
+
+COPY --from=build /app/build /app
+COPY --from=build /app/node_modules /app/node_modules
 
 EXPOSE 3000
 
-CMD ["npm" , "start"]
+CMD ["node" , "start"]
