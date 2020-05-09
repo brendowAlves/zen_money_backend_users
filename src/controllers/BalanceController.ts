@@ -13,7 +13,7 @@ const balances = [
     }
 ]
 
-@Controller('api/Balance')
+@Controller('api/balance')
 @ClassMiddleware(auth)
 export class BalanceController {
 
