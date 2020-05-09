@@ -3,6 +3,7 @@ import * as crypto from 'crypto'
 import { SECRET_FOR_PASSWORD, ACCESS_TOKEN_SECRET } from '../../../constants';
 import * as jwt from 'jsonwebtoken';
 import { PayloadToken } from '../../types/login';
+
 type gentoken = (user: IUser) => string;
 
 export class UserApp {
