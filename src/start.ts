@@ -1,7 +1,6 @@
 
 import ZenMoneyServer from './Server';
 import { LoginController } from './controllers/LoginController';
-import { BalanceController } from './controllers/BalanceController';
 import { UserController } from './controllers/UserController';
 import { DB_CONNECTION_STRING } from './constants';
 import { connect } from 'mongoose';
@@ -23,7 +22,6 @@ doConnection();
 
 const controllers: InstanceType<any>[] = [
     new LoginController(),
-    new BalanceController(),
     new UserController()
 ];
 
