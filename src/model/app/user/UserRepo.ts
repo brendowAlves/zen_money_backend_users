@@ -1,6 +1,6 @@
 import { Document, Schema, model } from 'mongoose';
 
-const collection = "user";
+const collection = "users";
 
 export interface IUser extends Document {
     name: string;

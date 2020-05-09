@@ -1,18 +1,27 @@
 import UserRepo, { IUser } from './UserRepo';
 import * as crypto from 'crypto'
-import { SECRET_PASSWORD } from 'src/constants';
-
+import { SECRET_FOR_PASSWORD, ACCESS_TOKEN_SECRET } from '../../../constants';
+import * as jwt from 'jsonwebtoken';
+import { PayloadToken } from '../../types/login';
+type gentoken = (user: IUser) => string;
 
 export class UserApp {
 
+    public createAcessToken = (user: IUser): Promise<string> =>
+        this.getActiveUserByEmailAndPassword(user)
+            .then(usrAtive => {
+                if (!usrAtive) throw new Error("Usuário ou Senha incorretos");
+                return usrAtive;
+            })
+            .then(this.generateToken)
+
+    private generateToken: gentoken = ({ id, name, email }) =>
+        jwt.sign({ id, name, email } as PayloadToken, ACCESS_TOKEN_SECRET);
 
     private getActiveUserByEmailAndPassword = (user: IUser): Promise<IUser | null> => {
-
         const { email, password } = this.encryptPassword(user);
-
         return UserRepo.findOne({ email, password, active: true }).then();
     }
-
 
     public insertUser = (user: IUser): Promise<IUser> =>
         this.getUserByEmail(user.email)
@@ -22,7 +31,7 @@ export class UserApp {
             })
             .then(this.validateUser)
             .then(this.encryptPassword)
-            .then(UserRepo.insertMany)
+            .then(x => UserRepo.insertMany(x))
             .then((docs: any) => docs[0]);
 
 
@@ -31,7 +40,7 @@ export class UserApp {
             .then();
 
     private encryptPassword = (user: IUser): IUser => {
-        const hash = crypto.createHmac('sha256', SECRET_PASSWORD)
+        const hash = crypto.createHmac('sha256', SECRET_FOR_PASSWORD)
             .update(user.password)
             .digest('hex');
 
@@ -46,7 +55,4 @@ export class UserApp {
 
         return user;
     }
-
-
-
 }

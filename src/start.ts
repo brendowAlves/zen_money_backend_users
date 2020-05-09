@@ -7,17 +7,16 @@ import { DB_CONNECTION_STRING } from './constants';
 import { connect } from 'mongoose';
 
 
-const connectionString: string = process.env.DB_CONNECTION_STRING || DB_CONNECTION_STRING;
+const connectionString: string = DB_CONNECTION_STRING;
 
 const doConnection = (): void => {
-    connect(connectionString, err => {
-        if (err) {
+    connect(connectionString)
+        .then(() => console.log(`Conexão realizada com sucesso: ${connectionString}`))
+        .catch(err => {
             console.error(`Erro na conexão com o banco:${connectionString}`);
             console.error(err.message);
-            return;
-        }
-        console.log(`Conexão realizada com sucesso: ${connectionString}`);
-    })
+            setTimeout(doConnection, 5000);
+        })
 }
 
 doConnection();
