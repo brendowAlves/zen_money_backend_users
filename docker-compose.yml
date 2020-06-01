@@ -2,9 +2,9 @@ version: '2.1'
 
 
 services: 
-    zen_money_backend:
-        image: zen_money_backend 
-        container_name: zen_money_backend
+    zen_money_users:
+        image: zen_money_users 
+        container_name: zen_money_users
         build:
             context: ./
             dockerfile: Dockerfile
